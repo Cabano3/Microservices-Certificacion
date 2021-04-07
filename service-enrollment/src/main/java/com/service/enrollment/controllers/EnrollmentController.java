@@ -24,7 +24,8 @@ public class EnrollmentController extends CommonController<Enrollment, Enrollmen
 		return ResponseEntity.ok(service.findAllById(ids));
 	}
 	
-	@PutMapping("/{id}")
+	
+	/*@PutMapping("/{id}")
 	public ResponseEntity<?> update(@RequestBody Enrollment enrollment, @PathVariable Long id){
 		Optional<Enrollment> o = service.findById(id);
 		if(!o.isPresent()) {
@@ -41,5 +42,5 @@ public class EnrollmentController extends CommonController<Enrollment, Enrollmen
 		enrollmentDb.setDetalles(enrollment.getDetalles());
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(enrollmentDb));
-	}
+	}*/
 }

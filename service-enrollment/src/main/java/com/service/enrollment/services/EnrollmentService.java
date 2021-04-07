@@ -6,5 +6,4 @@ import com.service.commons.services.CommonService;
 public interface EnrollmentService extends CommonService<Enrollment>{
 
 	public Iterable<Enrollment> findAllById(Iterable<Long> ids);
-
 }

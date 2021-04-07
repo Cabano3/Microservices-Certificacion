@@ -1,4 +1,4 @@
-package com.service.commonEnrollment.models.entity;
+package com.service.courses.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,21 +13,21 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="enrollments_Details")
-public class EnrollmentDetails {
-	
+@Table(name="materia_matriculas")
+public class MateriaMatricula {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="status")
-	private String status;
+	@Column(name="matricula_id")
+	private Long matriculaId;
 	
-	@JsonIgnoreProperties(value = {"detalles"})
+	@JsonIgnoreProperties(value= {"materiasMatriculas"})
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn (name="enrollment_id")
-	private Enrollment enrollment;
-	
+	@JoinColumn(name="subject_id")
+	private Subject subject;
+
 	public Long getId() {
 		return id;
 	}
@@ -36,34 +36,33 @@ public class EnrollmentDetails {
 		this.id = id;
 	}
 
-	public String getStatus() {
-		return status;
+	public Long getMatriculaId() {
+		return matriculaId;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setMatriculaId(Long matriculaId) {
+		this.matriculaId = matriculaId;
 	}
 
-	public Enrollment getEnrollment() {
-		return enrollment;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setEnrollment(Enrollment enrollment) {
-		this.enrollment = enrollment;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) {
 			return true;
 		}
 		
-		if(!(obj instanceof EnrollmentDetails)) {
+		if(!(obj instanceof MateriaMatricula)) {
 			return false;
 		}
 		
-		EnrollmentDetails ed = (EnrollmentDetails) obj;
-		
-		return this.id != null && this.id.equals(ed.getId());
-	}	
+		MateriaMatricula am = (MateriaMatricula) obj;
+		return this.matriculaId != null && this.matriculaId.equals(am.getMatriculaId());
+	}
 }

@@ -12,4 +12,7 @@ public interface SubjectRepository extends CrudRepository<Subject, Long>{
 	@Query("select s from Subject s where s.name like %?1% or s.nrc like %?1%")
 	public List<Subject> findByNameOrNrc(String term);
 	
+	@Query("SELECT s FROM Subject s join fetch s.materiasMatriculas m where m.matriculaId =?1")
+	public List<Subject> findSubjectByMatriculaId(Long id);
+	
 }

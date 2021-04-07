@@ -31,12 +31,7 @@ public class Enrollment {
 	@Column(name="enrollment_day")
 	private Date enrollmentDay;
 	
-	@JsonIgnoreProperties(value = {"enrollment"}, allowSetters = true)
-	@OneToMany(mappedBy = "enrollment",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<EnrollmentDetails> detalles;
-	
 	public Enrollment() {
-		this.detalles = new ArrayList<>();
 	}
 
 	@PrePersist
@@ -58,25 +53,6 @@ public class Enrollment {
 
 	public void setEnrollmentDay(Date enrollmentDay) {
 		this.enrollmentDay = enrollmentDay;
-	}
-
-	public List<EnrollmentDetails> getDetalles() {
-		return detalles;
-	}
-
-	public void setDetalles(List<EnrollmentDetails> detalles) {
-		this.detalles.clear();
-		detalles.forEach(this::addDetalles);
-	}
-	
-	public void addDetalles(EnrollmentDetails detalle) {
-		this.detalles.add(detalle);
-		detalle.setEnrollment(this);
-	}
-	
-	public void removeDetalles(EnrollmentDetails detalle) {
-		this.detalles.remove(detalle);
-		detalle.setEnrollment(null);
 	}
 
 	@Override
